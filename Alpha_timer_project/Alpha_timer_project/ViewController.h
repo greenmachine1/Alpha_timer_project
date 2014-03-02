@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+{
+    IBOutlet UICollectionView *mainCollectionView;
+}
+
+
+-(IBAction)onClick:(id)sender;
+
 
 @end
