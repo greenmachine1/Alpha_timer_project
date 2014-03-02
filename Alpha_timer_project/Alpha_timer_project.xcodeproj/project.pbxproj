@@ -19,6 +19,7 @@
 		D6C071F818C3546400F85E6C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C071E018C3546400F85E6C /* UIKit.framework */; };
 		D6C0720018C3546400F85E6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6C071FE18C3546400F85E6C /* InfoPlist.strings */; };
 		D6C0720218C3546400F85E6C /* Alpha_timer_projectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C0720118C3546400F85E6C /* Alpha_timer_projectTests.m */; };
+		D6C0720D18C354FD00F85E6C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C0720C18C354FD00F85E6C /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		D6C071FD18C3546400F85E6C /* Alpha_timer_projectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alpha_timer_projectTests-Info.plist"; sourceTree = "<group>"; };
 		D6C071FF18C3546400F85E6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6C0720118C3546400F85E6C /* Alpha_timer_projectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alpha_timer_projectTests.m; sourceTree = "<group>"; };
+		D6C0720B18C354FD00F85E6C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D6C0720C18C354FD00F85E6C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				D6C071EC18C3546400F85E6C /* AppDelegate.m */,
 				D6C071EE18C3546400F85E6C /* Images.xcassets */,
 				D6C071E318C3546400F85E6C /* Supporting Files */,
+				D6C0720B18C354FD00F85E6C /* ViewController.h */,
+				D6C0720C18C354FD00F85E6C /* ViewController.m */,
 			);
 			path = Alpha_timer_project;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C0720D18C354FD00F85E6C /* ViewController.m in Sources */,
 				D6C071ED18C3546400F85E6C /* AppDelegate.m in Sources */,
 				D6C071E918C3546400F85E6C /* main.m in Sources */,
 			);
