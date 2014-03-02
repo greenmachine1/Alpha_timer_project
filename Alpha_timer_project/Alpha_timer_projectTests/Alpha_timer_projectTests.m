@@ -2,7 +2,7 @@
 //  Alpha_timer_projectTests.m
 //  Alpha_timer_projectTests
 //
-//  Created by Cory Green on 3/1/14.
+//  Created by Cory Green on 3/2/14.
 //  Copyright (c) 2014 Cory Green. All rights reserved.
 //
 

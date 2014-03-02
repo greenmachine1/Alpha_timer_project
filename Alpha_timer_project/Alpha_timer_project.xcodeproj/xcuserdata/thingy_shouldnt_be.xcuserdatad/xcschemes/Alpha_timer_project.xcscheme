@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6C0719718C292B500F85E6C"
+               BlueprintIdentifier = "D6C071D818C3546400F85E6C"
                BuildableName = "Alpha_timer_project.app"
                BlueprintName = "Alpha_timer_project"
                ReferencedContainer = "container:Alpha_timer_project.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6C071B818C292B500F85E6C"
+               BlueprintIdentifier = "D6C071F318C3546400F85E6C"
                BuildableName = "Alpha_timer_projectTests.xctest"
                BlueprintName = "Alpha_timer_projectTests"
                ReferencedContainer = "container:Alpha_timer_project.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6C0719718C292B500F85E6C"
+            BlueprintIdentifier = "D6C071D818C3546400F85E6C"
             BuildableName = "Alpha_timer_project.app"
             BlueprintName = "Alpha_timer_project"
             ReferencedContainer = "container:Alpha_timer_project.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6C0719718C292B500F85E6C"
+            BlueprintIdentifier = "D6C071D818C3546400F85E6C"
             BuildableName = "Alpha_timer_project.app"
             BlueprintName = "Alpha_timer_project"
             ReferencedContainer = "container:Alpha_timer_project.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D6C0719718C292B500F85E6C"
+            BlueprintIdentifier = "D6C071D818C3546400F85E6C"
             BuildableName = "Alpha_timer_project.app"
             BlueprintName = "Alpha_timer_project"
             ReferencedContainer = "container:Alpha_timer_project.xcodeproj">
