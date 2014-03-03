@@ -2,52 +2,20 @@
 //  AppDelegate.m
 //  Alpha_timer_project
 //
-//  Created by Cory Green on 3/2/14.
+//  Created by Cory Green on 3/3/14.
 //  Copyright (c) 2014 Cory Green. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
-
 @implementation AppDelegate
-
-
--(UICollectionViewFlowLayout *)flowLayout{
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    
-    flowLayout.minimumLineSpacing = 20.0f;
-    flowLayout.minimumInteritemSpacing = 10.0f;
-    flowLayout.itemSize = CGSizeMake(80.0f, 120.0f);
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 20.0f, 10.0f, 20.0f);
-    
-    
-    return flowLayout;
-}
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
-    ViewController *viewController = [[ViewController alloc] initWithCollectionViewLayout:[self flowLayout]];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    self.window.rootViewController = viewController;
-    
-    [self.window makeKeyAndVisible];
-    
+    // Override point for customization after application launch.
     return YES;
-    
 }
-
-
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
