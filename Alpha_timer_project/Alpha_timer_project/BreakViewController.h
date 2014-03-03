@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BreakViewController.h
 //  Alpha_timer_project
 //
 //  Created by Cory Green on 3/3/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BreakViewController : UIViewController
 
 @end

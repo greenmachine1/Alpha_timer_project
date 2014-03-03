@@ -21,6 +21,11 @@
 		D60862C518C477530071EA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60862A718C477530071EA74 /* UIKit.framework */; };
 		D60862CD18C477530071EA74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D60862CB18C477530071EA74 /* InfoPlist.strings */; };
 		D60862CF18C477530071EA74 /* Alpha_timer_projectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862CE18C477530071EA74 /* Alpha_timer_projectTests.m */; };
+		D60862DA18C479450071EA74 /* customBreakOrCapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862D918C479450071EA74 /* customBreakOrCapCell.m */; };
+		D60862DE18C47DD80071EA74 /* CapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862DC18C47DD80071EA74 /* CapViewController.m */; };
+		D60862DF18C47DD80071EA74 /* CapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862DD18C47DD80071EA74 /* CapViewController.xib */; };
+		D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862E118C47DE80071EA74 /* BreakViewController.m */; };
+		D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862E218C47DE80071EA74 /* BreakViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,14 @@
 		D60862CA18C477530071EA74 /* Alpha_timer_projectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alpha_timer_projectTests-Info.plist"; sourceTree = "<group>"; };
 		D60862CC18C477530071EA74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D60862CE18C477530071EA74 /* Alpha_timer_projectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alpha_timer_projectTests.m; sourceTree = "<group>"; };
+		D60862D818C479450071EA74 /* customBreakOrCapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customBreakOrCapCell.h; sourceTree = "<group>"; };
+		D60862D918C479450071EA74 /* customBreakOrCapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customBreakOrCapCell.m; sourceTree = "<group>"; };
+		D60862DB18C47DD80071EA74 /* CapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapViewController.h; sourceTree = "<group>"; };
+		D60862DC18C47DD80071EA74 /* CapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapViewController.m; sourceTree = "<group>"; };
+		D60862DD18C47DD80071EA74 /* CapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CapViewController.xib; sourceTree = "<group>"; };
+		D60862E018C47DE80071EA74 /* BreakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakViewController.h; sourceTree = "<group>"; };
+		D60862E118C47DE80071EA74 /* BreakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakViewController.m; sourceTree = "<group>"; };
+		D60862E218C47DE80071EA74 /* BreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +132,14 @@
 				D60862B918C477530071EA74 /* ViewController.m */,
 				D60862BB18C477530071EA74 /* Images.xcassets */,
 				D60862AA18C477530071EA74 /* Supporting Files */,
+				D60862D818C479450071EA74 /* customBreakOrCapCell.h */,
+				D60862D918C479450071EA74 /* customBreakOrCapCell.m */,
+				D60862DB18C47DD80071EA74 /* CapViewController.h */,
+				D60862DC18C47DD80071EA74 /* CapViewController.m */,
+				D60862DD18C47DD80071EA74 /* CapViewController.xib */,
+				D60862E018C47DE80071EA74 /* BreakViewController.h */,
+				D60862E118C47DE80071EA74 /* BreakViewController.m */,
+				D60862E218C47DE80071EA74 /* BreakViewController.xib */,
 			);
 			path = Alpha_timer_project;
 			sourceTree = "<group>";
@@ -229,8 +250,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D60862BC18C477530071EA74 /* Images.xcassets in Resources */,
+				D60862DF18C47DD80071EA74 /* CapViewController.xib in Resources */,
 				D60862AE18C477530071EA74 /* InfoPlist.strings in Resources */,
 				D60862B718C477530071EA74 /* Main.storyboard in Resources */,
+				D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +274,9 @@
 			files = (
 				D60862BA18C477530071EA74 /* ViewController.m in Sources */,
 				D60862B418C477530071EA74 /* AppDelegate.m in Sources */,
+				D60862DA18C479450071EA74 /* customBreakOrCapCell.m in Sources */,
+				D60862DE18C47DD80071EA74 /* CapViewController.m in Sources */,
+				D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */,
 				D60862B018C477530071EA74 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
