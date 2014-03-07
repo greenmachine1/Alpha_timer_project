@@ -48,7 +48,7 @@
         // ********** my code block from breakViewController ********** //
         breakViewController.returnInfo = ^(NSString *name, int breakTime){
           
-            // -- getting the break object and passing in info
+            // ********** getting the break object and passing in info ********** //
             CapOrBreakObject *newCapOrBreakObject = [[CapOrBreakObject alloc] initWithName:name timerType:@"break" bankLocation:@"none" machineLocation:@"none" timeToSet:breakTime];
             
             
@@ -65,8 +65,6 @@
             
             
         };
-        
-        
         [self presentViewController:breakViewController animated:TRUE completion:nil];
         
         
@@ -77,7 +75,7 @@
         
         CapViewController *capViewController = [[CapViewController alloc] initWithNibName:@"CapViewController" bundle:nil];
         
-        // -- my code block from capViewController
+        // ********** my code block from capViewController ********** //
         capViewController.returnCapInfo = ^(NSString *capName, NSString *machineNumber, NSString *bankNumber){
             
         
@@ -96,8 +94,6 @@
             NSLog(@"%@", [capOrBreakDictionary allKeys]);
             
         };
-        
-        
         [self presentViewController:capViewController animated:TRUE completion:nil];
         
         
@@ -107,7 +103,7 @@
 
 
 
-// -- how many cells
+// ********** how many cells ********** //
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return namesOfKeysArray.count;
@@ -119,7 +115,7 @@
 
 
 
-// -- the context of each cell
+// ********** the context of each cell ********** //
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     customBreakOrCapCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath ];
@@ -156,6 +152,7 @@
         cell.typeLabel.text = typeObject;
         cell.timeLabel.text = timeString;
         cell.machineNumberLabel.text = bankPlusMachine;
+        
     }
     
     
@@ -164,18 +161,41 @@
 
 
 
-// ********** removes the selected object ********** //
+// ********** user selects and item then decides what to do ********** //
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSString *nameString = [[NSString alloc] initWithFormat:@"Event for %@", [namesOfKeysArray objectAtIndex:indexPath.row]];
     
-    [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
     
-    [namesOfKeysArray removeObjectAtIndex:indexPath.row];
+    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:@"Pause Timer", nil];
     
-    [mainCollectionView reloadData];
+    [newAlert show];
     
+    // *********** marking the index that the user seleced ********** //
+    selectedIndex = indexPath.row;
 }
 
+
+
+
+// *********** alert that pops up upon selecting an item ********** //
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex == 0){
+        
+        [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+        
+        [namesOfKeysArray removeObjectAtIndex:selectedIndex];
+        
+        [mainCollectionView reloadData];
+        
+    }
+    else if(buttonIndex == 1){
+        
+        // ************ do something else here for pause timer *********** //
+        
+    }
+}
 
 
 

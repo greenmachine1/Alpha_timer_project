@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 {
     
     IBOutlet UICollectionView *mainCollectionView;
@@ -16,5 +16,7 @@
     NSMutableDictionary *capOrBreakDictionary;
     
     NSMutableArray *namesOfKeysArray;
+    
+    int selectedIndex;
 }
 @end
