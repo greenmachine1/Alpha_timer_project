@@ -14,6 +14,8 @@
 
 @implementation CapViewController
 
+@synthesize returnCapInfo;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [nameOfCap setDelegate:self];
+    [machineOfCap setDelegate:self];
+    [bankOfCap setDelegate:self];
+    
+    
 }
 
 
@@ -37,10 +44,22 @@
     // -- the done button
     if(button.tag == 0){
         
+        // -- my code block that returns to the main view
+        returnCapInfo(nameOfCap.text, machineOfCap.text, bankOfCap.text);
+        
+        // -- dismissing this view
         [self dismissViewControllerAnimated:TRUE completion:nil];
         
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    [nameOfCap resignFirstResponder];
+    [bankOfCap resignFirstResponder];
+    [machineOfCap resignFirstResponder];
+    
+    return true;
 }
 
 

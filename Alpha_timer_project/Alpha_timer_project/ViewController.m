@@ -14,6 +14,8 @@
 
 #import "BreakViewController.h"
 
+#import "CapOrBreakObject.h"
+
 @interface ViewController ()
 
 @end
@@ -23,27 +25,78 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    capOrBreakDictionary = [[NSMutableDictionary alloc] init];
+    
+    namesOfKeysArray = [[NSMutableArray alloc] init];
+
 }
 
 
-// -- selecting either a break or cap
+// *********** selecting either a break or cap ***************** //
 -(IBAction)onClick:(id)sender{
     
     UIButton *button = (UIButton *)sender;
     
-    // -- taps the break button
+    // ********** taps the break button ********** //
     if(button.tag == 0){
         
+        
+        
         BreakViewController *breakViewController = [[BreakViewController alloc] initWithNibName:@"BreakViewController" bundle:nil];
+        
+        // ********** my code block from breakViewController ********** //
+        breakViewController.returnInfo = ^(NSString *name, int breakTime){
+          
+            // -- getting the break object and passing in info
+            CapOrBreakObject *newCapOrBreakObject = [[CapOrBreakObject alloc] initWithName:name timerType:@"break" bankLocation:@"none" machineLocation:@"none" timeToSet:breakTime];
+            
+            
+            
+            [capOrBreakDictionary setObject:newCapOrBreakObject forKey:name];
+            
+            // ********* making an array of just names for later usage ********** //
+            [namesOfKeysArray addObject:name];
+            
+            [mainCollectionView reloadData];
+            
+            NSLog(@"%@", [capOrBreakDictionary allKeys]);
+            
+            
+            
+        };
+        
         
         [self presentViewController:breakViewController animated:TRUE completion:nil];
         
         
-    // -- taps the cap button
+    // ********** taps the cap button ********** //
     }else if(button.tag == 1){
         
+        
+        
         CapViewController *capViewController = [[CapViewController alloc] initWithNibName:@"CapViewController" bundle:nil];
+        
+        // -- my code block from capViewController
+        capViewController.returnCapInfo = ^(NSString *capName, NSString *machineNumber, NSString *bankNumber){
+            
+        
+            // ********** the time for this will always be 2 hours, so this is ok to hardcode in ********** //
+            CapOrBreakObject *newCapObject = [[CapOrBreakObject alloc] initWithName:capName timerType:@"cap" bankLocation:bankNumber machineLocation:machineNumber timeToSet:2000];
+            
+            
+            
+            [capOrBreakDictionary setObject:newCapObject forKey:capName];
+            
+            // ********* making an array of just names for later usage ********** //
+            [namesOfKeysArray addObject:capName];
+            
+            [mainCollectionView reloadData];
+            
+            NSLog(@"%@", [capOrBreakDictionary allKeys]);
+            
+        };
+        
         
         [self presentViewController:capViewController animated:TRUE completion:nil];
         
@@ -57,8 +110,12 @@
 // -- how many cells
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 30;
+    return namesOfKeysArray.count;
+    
 }
+
+
+
 
 
 
@@ -66,14 +123,62 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     customBreakOrCapCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath ];
+
     
-    cell.backgroundColor = [UIColor yellowColor];
-    cell.nameLabel.text = @"Grant";
-    cell.typeLabel.text = @"Break";
-    cell.timeLabel.text = @"15:12";
+    
+    if(namesOfKeysArray != nil){
+        NSString *nameObject = [[NSString alloc] init];
+        nameObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnNameString];
+        
+        NSString *typeObject = [[NSString alloc] init];
+        typeObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnType];
+        
+        NSString *bankObject = [[NSString alloc] init];
+        bankObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnBank];
+        
+        NSString *machineObject = [[NSString alloc] init];
+        machineObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnMachine];
+        
+        int timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
+        
+        NSString *timeString = [[NSString alloc] initWithFormat:@"%i", timeReturned];
+        
+        
+        NSString *bankPlusMachine;
+        if([typeObject  isEqual: @"cap"]){
+            bankPlusMachine = [[NSString alloc] initWithFormat:@"Bank %@-%@", bankObject, machineObject];
+        }else{
+            bankPlusMachine = @"";
+        }
+        
+        cell.backgroundColor = [UIColor greenColor];
+        cell.nameLabel.text = nameObject;
+        cell.typeLabel.text = typeObject;
+        cell.timeLabel.text = timeString;
+        cell.machineNumberLabel.text = bankPlusMachine;
+    }
+    
     
     return  cell;
 }
+
+
+
+// ********** removes the selected object ********** //
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
+    
+    [namesOfKeysArray removeObjectAtIndex:indexPath.row];
+    
+    [mainCollectionView reloadData];
+    
+}
+
+
+
+
 
 
 

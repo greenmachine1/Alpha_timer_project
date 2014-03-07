@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CapViewController : UIViewController
+typedef void (^ReturnCapInfo)(NSString *, NSString *, NSString *);
+@interface CapViewController : UIViewController<UITextFieldDelegate>
+{
+    IBOutlet UITextField *nameOfCap;
+    IBOutlet UITextField *bankOfCap;
+    IBOutlet UITextField *machineOfCap;
+    
+    ReturnCapInfo returnCapInfo;
+}
+
+@property (nonatomic, strong)ReturnCapInfo returnCapInfo;
 
 @end

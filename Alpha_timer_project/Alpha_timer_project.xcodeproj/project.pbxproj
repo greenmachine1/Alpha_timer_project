@@ -26,6 +26,7 @@
 		D60862DF18C47DD80071EA74 /* CapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862DD18C47DD80071EA74 /* CapViewController.xib */; };
 		D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862E118C47DE80071EA74 /* BreakViewController.m */; };
 		D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862E218C47DE80071EA74 /* BreakViewController.xib */; };
+		D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D65DA62818C9C78900817F25 /* CapOrBreakObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		D60862E018C47DE80071EA74 /* BreakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakViewController.h; sourceTree = "<group>"; };
 		D60862E118C47DE80071EA74 /* BreakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakViewController.m; sourceTree = "<group>"; };
 		D60862E218C47DE80071EA74 /* BreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakViewController.xib; sourceTree = "<group>"; };
+		D65DA62718C9C78900817F25 /* CapOrBreakObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapOrBreakObject.h; sourceTree = "<group>"; };
+		D65DA62818C9C78900817F25 /* CapOrBreakObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapOrBreakObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +134,6 @@
 				D60862B818C477530071EA74 /* ViewController.h */,
 				D60862B918C477530071EA74 /* ViewController.m */,
 				D60862BB18C477530071EA74 /* Images.xcassets */,
-				D60862AA18C477530071EA74 /* Supporting Files */,
 				D60862D818C479450071EA74 /* customBreakOrCapCell.h */,
 				D60862D918C479450071EA74 /* customBreakOrCapCell.m */,
 				D60862DB18C47DD80071EA74 /* CapViewController.h */,
@@ -140,6 +142,9 @@
 				D60862E018C47DE80071EA74 /* BreakViewController.h */,
 				D60862E118C47DE80071EA74 /* BreakViewController.m */,
 				D60862E218C47DE80071EA74 /* BreakViewController.xib */,
+				D60862AA18C477530071EA74 /* Supporting Files */,
+				D65DA62718C9C78900817F25 /* CapOrBreakObject.h */,
+				D65DA62818C9C78900817F25 /* CapOrBreakObject.m */,
 			);
 			path = Alpha_timer_project;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 			files = (
 				D60862BA18C477530071EA74 /* ViewController.m in Sources */,
 				D60862B418C477530071EA74 /* AppDelegate.m in Sources */,
+				D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */,
 				D60862DA18C479450071EA74 /* customBreakOrCapCell.m in Sources */,
 				D60862DE18C47DD80071EA74 /* CapViewController.m in Sources */,
 				D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */,
@@ -486,6 +492,7 @@
 				D60862D418C477530071EA74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D60862D518C477530071EA74 /* Build configuration list for PBXNativeTarget "Alpha_timer_projectTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +501,7 @@
 				D60862D718C477530071EA74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

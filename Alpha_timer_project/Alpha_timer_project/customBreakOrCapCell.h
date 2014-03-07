@@ -13,10 +13,12 @@
     IBOutlet UILabel *nameLabel;
     IBOutlet UILabel *timeLabel;
     IBOutlet UILabel *typeLabel;
+    IBOutlet UILabel *machineNumberLabel;
 }
 
 
 @property (nonatomic, strong)UILabel *nameLabel;
 @property (nonatomic, strong)UILabel *timeLabel;
 @property (nonatomic, strong)UILabel *typeLabel;
+@property (nonatomic, strong)UILabel *machineNumberLabel;
 @end

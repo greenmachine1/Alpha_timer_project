@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BreakViewController : UIViewController
 
+typedef void (^returnBreakInfo)(NSString *, int);
+@interface BreakViewController : UIViewController<UITextFieldDelegate>
+{
+    int breakTime;
+    
+    IBOutlet UITextField *nameOfPersonOnBreak;
+    
+    IBOutlet UISegmentedControl *timeSegment;
+    
+    
+    returnBreakInfo returnInfo;
+}
+
+@property (nonatomic, strong)returnBreakInfo returnInfo;
 @end

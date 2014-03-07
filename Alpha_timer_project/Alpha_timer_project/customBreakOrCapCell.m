@@ -10,7 +10,7 @@
 
 @implementation customBreakOrCapCell
 
-@synthesize timeLabel, nameLabel, typeLabel;
+@synthesize timeLabel, nameLabel, typeLabel, machineNumberLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
