@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSDate *dateUponExiting;
+    NSDate *dateUponReentry;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

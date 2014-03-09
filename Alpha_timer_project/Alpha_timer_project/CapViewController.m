@@ -44,11 +44,20 @@
     // -- the done button
     if(button.tag == 0){
         
-        // -- my code block that returns to the main view
-        returnCapInfo(nameOfCap.text, machineOfCap.text, bankOfCap.text);
-        
-        // -- dismissing this view
-        [self dismissViewControllerAnimated:TRUE completion:nil];
+        // ********* if the text entered has nothing in it then... ********** //
+        if([nameOfCap.text isEqualToString:@""]){
+            
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter the person who the cap is for" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlert show];
+            
+        }else{
+            
+            // -- my code block that returns to the main view
+            returnCapInfo(nameOfCap.text, machineOfCap.text, bankOfCap.text);
+            // -- dismissing this view
+            [self dismissViewControllerAnimated:TRUE completion:nil];
+        }
         
     }
 }
