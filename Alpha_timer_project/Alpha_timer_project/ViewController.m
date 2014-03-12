@@ -191,7 +191,6 @@
         
         [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
         
-        
         [namesOfKeysArray removeObjectAtIndex:selectedIndex];
         
         [mainCollectionView reloadData];
