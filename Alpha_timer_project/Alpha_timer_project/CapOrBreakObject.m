@@ -8,6 +8,8 @@
 
 #import "CapOrBreakObject.h"
 
+#import "timerObject.h"
+
 @implementation CapOrBreakObject
 
 
@@ -22,6 +24,12 @@
         bankString = bank;
         machineString = location;
         timeInt = time;
+        
+        
+        
+        // ********** calling on the timer object here with the time ********** //
+        newTimerObject = [[timerObject alloc] initWithTime:timeInt andName:nameString];
+        
         
     }
     return self;

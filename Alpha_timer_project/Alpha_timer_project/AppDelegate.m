@@ -27,8 +27,8 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
-    dateUponExiting = [[NSDate alloc] init];
-    NSLog(@"%@", dateUponExiting);
+    // ********** notifying the other part of the program that the background has become present ********** //
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyOnPause" object:nil];
     
     
 }
@@ -37,8 +37,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    dateUponReentry = [[NSDate alloc] init];
-    NSLog(@"%@", dateUponReentry);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyOnResume" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

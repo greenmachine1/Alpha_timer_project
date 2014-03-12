@@ -16,6 +16,7 @@
 
 #import "CapOrBreakObject.h"
 
+
 @interface ViewController ()
 
 @end
@@ -126,6 +127,8 @@
     
     
     if(namesOfKeysArray != nil){
+        
+        // *********** getting the different portions of the object back ********** //
         NSString *nameObject = [[NSString alloc] init];
         nameObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnNameString];
         
@@ -187,6 +190,7 @@
     if(buttonIndex == 0){
         
         [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+        
         
         [namesOfKeysArray removeObjectAtIndex:selectedIndex];
         

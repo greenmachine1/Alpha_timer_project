@@ -27,6 +27,7 @@
 		D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862E118C47DE80071EA74 /* BreakViewController.m */; };
 		D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862E218C47DE80071EA74 /* BreakViewController.xib */; };
 		D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D65DA62818C9C78900817F25 /* CapOrBreakObject.m */; };
+		D6A61DB518CDA8CD00C64FF7 /* timerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A61DB418CDA8CD00C64FF7 /* timerObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		D60862E218C47DE80071EA74 /* BreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakViewController.xib; sourceTree = "<group>"; };
 		D65DA62718C9C78900817F25 /* CapOrBreakObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapOrBreakObject.h; sourceTree = "<group>"; };
 		D65DA62818C9C78900817F25 /* CapOrBreakObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapOrBreakObject.m; sourceTree = "<group>"; };
+		D6A61DB318CDA8CD00C64FF7 /* timerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timerObject.h; sourceTree = "<group>"; };
+		D6A61DB418CDA8CD00C64FF7 /* timerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timerObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +145,11 @@
 				D60862E018C47DE80071EA74 /* BreakViewController.h */,
 				D60862E118C47DE80071EA74 /* BreakViewController.m */,
 				D60862E218C47DE80071EA74 /* BreakViewController.xib */,
-				D60862AA18C477530071EA74 /* Supporting Files */,
 				D65DA62718C9C78900817F25 /* CapOrBreakObject.h */,
 				D65DA62818C9C78900817F25 /* CapOrBreakObject.m */,
+				D60862AA18C477530071EA74 /* Supporting Files */,
+				D6A61DB318CDA8CD00C64FF7 /* timerObject.h */,
+				D6A61DB418CDA8CD00C64FF7 /* timerObject.m */,
 			);
 			path = Alpha_timer_project;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A61DB518CDA8CD00C64FF7 /* timerObject.m in Sources */,
 				D60862BA18C477530071EA74 /* ViewController.m in Sources */,
 				D60862B418C477530071EA74 /* AppDelegate.m in Sources */,
 				D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */,
