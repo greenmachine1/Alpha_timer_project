@@ -14,6 +14,12 @@
     NSDate *dateBack;
     
     int timePassedIn;
+    
+    int dateStopInInt;
+    int dateResmeInInt;
+    
+    // **** total time difference **** //
+    int totalDifferenceInTime;
 }
 
 - (id)initWithTime:(int)time andName:(NSString *)name;

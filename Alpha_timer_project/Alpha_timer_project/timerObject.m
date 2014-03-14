@@ -33,9 +33,14 @@
 // **** gone to the background **** //
 -(void)didPause:(NSNotificationCenter *)notify{
     
-    NSLog(@"Went to background");
     
+    
+    
+    // **** getting the time of the stop **** //
     dateStopped = [[NSDate alloc] init];
+    
+    // **** converting it to an int **** //
+    dateStopInInt = [dateStopped timeIntervalSince1970];
     
     NSLog(@"time when stopped %@", dateStopped);
     
@@ -50,11 +55,21 @@
 // **** gone to the foreground **** //
 -(void)didResume:(NSNotificationCenter *)notify{
     
-    NSLog(@"Came Back");
     
+    
+    // **** getting the date on resume **** //
     dateBack = [[NSDate alloc] init];
     
-    NSLog(@"time when stopped %@", dateBack);
+    dateResmeInInt = [dateBack timeIntervalSince1970];
+    
+    
+    // **** the difference between the stop time and the **** //
+    // **** resume time **** //
+    totalDifferenceInTime = dateResmeInInt - dateStopInInt;
+    
+    NSLog(@"time when resumed %@", dateBack);
+    
+    NSLog(@"time difference %i", totalDifferenceInTime);
     
     
 }
