@@ -10,7 +10,10 @@
 
 @interface timerObject : NSObject
 {
+    NSDate *dateStopped;
+    NSDate *dateBack;
     
+    int timePassedIn;
 }
 
 - (id)initWithTime:(int)time andName:(NSString *)name;

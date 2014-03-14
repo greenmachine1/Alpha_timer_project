@@ -14,6 +14,9 @@
     self = [super init];
     if (self) {
     
+        timePassedIn = time;
+        
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPause:) name:@"NotifyOnPause" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didResume:) name:@"NotifyOnResume" object:nil];
@@ -24,22 +27,49 @@
 
 
 
+
+
+// **** meant to grab the time when the app has **** //
+// **** gone to the background **** //
 -(void)didPause:(NSNotificationCenter *)notify{
     
     NSLog(@"Went to background");
     
-    //[[NSNotificationCenter defaultCenter] removeObserver:self name:@"NotifyOnPause" object:nil];
+    dateStopped = [[NSDate alloc] init];
+    
+    NSLog(@"time when stopped %@", dateStopped);
+    
     
 }
 
 
+
+
+
+// **** meant to grab the time when the app has **** //
+// **** gone to the foreground **** //
 -(void)didResume:(NSNotificationCenter *)notify{
     
     NSLog(@"Came Back");
     
-    //[[NSNotificationCenter defaultCenter] removeObserver:self name:@"NotifyOnResume" object:nil];
+    dateBack = [[NSDate alloc] init];
+    
+    NSLog(@"time when stopped %@", dateBack);
+    
     
 }
+
+
+// ************* called when the object is deleted ********** //
+- (void)dealloc{
+    
+    // ********** removes object from being notified when deleted ********** //
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
+
 
 
 
