@@ -8,15 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
+#import "CapOrBreakObject.h"
+
+@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate,capOrBreakObjectProtocol>
 {
     
     IBOutlet UICollectionView *mainCollectionView;
     
     NSMutableDictionary *capOrBreakDictionary;
     
+    NSMutableDictionary *timeDictionary;
+    
     NSMutableArray *namesOfKeysArray;
     
     int selectedIndex;
+    
+    NSString *timeString;
+    
+    int timeReturned;
 }
 @end

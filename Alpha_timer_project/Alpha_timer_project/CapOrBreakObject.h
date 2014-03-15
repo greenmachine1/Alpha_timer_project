@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol capOrBreakObjectProtocol <NSObject>
+
+@required
+
+// **** the required method
+-(void)updateTime:(int)time name:(NSString *)nameOfObject;
+
+@end
+
 
 @interface CapOrBreakObject : NSObject
 {
@@ -30,6 +39,8 @@
     
     // **** the timer itself **** //
     NSTimer *timer;
+    
+    id<capOrBreakObjectProtocol> delegate;
 }
 
 // -- basically passing in all the information
@@ -41,7 +52,7 @@
 -(NSString *)returnMachine;
 -(int)returnTime;
 
-
+@property (nonatomic, strong) id delegate;
 
 
 @end

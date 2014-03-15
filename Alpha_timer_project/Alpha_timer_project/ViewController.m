@@ -30,6 +30,8 @@
     capOrBreakDictionary = [[NSMutableDictionary alloc] init];
     
     namesOfKeysArray = [[NSMutableArray alloc] init];
+    
+    timeDictionary = [[NSMutableDictionary alloc] init];
 
 }
 
@@ -55,6 +57,7 @@
             // ********** getting the break object and passing in info ********** //
             CapOrBreakObject *newCapOrBreakObject = [[CapOrBreakObject alloc] initWithName:name timerType:@"break" bankLocation:@"none" machineLocation:@"none" timeToSet:breakTime];
             
+            newCapOrBreakObject.delegate = self;
             
             
             [capOrBreakDictionary setObject:newCapOrBreakObject forKey:name];
@@ -84,7 +87,9 @@
             
         
             // ********** the time for this will always be 2 hours, so this is ok to hardcode in ********** //
-            CapOrBreakObject *newCapObject = [[CapOrBreakObject alloc] initWithName:capName timerType:@"cap" bankLocation:bankNumber machineLocation:machineNumber timeToSet:2000];
+            CapOrBreakObject *newCapObject = [[CapOrBreakObject alloc] initWithName:capName timerType:@"cap" bankLocation:bankNumber machineLocation:machineNumber timeToSet:120];
+            
+            newCapObject.delegate = self;
             
             
             
@@ -143,11 +148,12 @@
         
         
         // *** this is going to be dynamic data *** //
-        int timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
+        timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
         
         
-        NSString *timeString = [[NSString alloc] initWithFormat:@"%i", timeReturned];
+        //timeString = [[NSString alloc] initWithFormat:@"%i", timeReturned];
         
+        timeString = [timeDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
         
         NSString *bankPlusMachine;
         if([typeObject  isEqual: @"cap"]){
@@ -201,6 +207,8 @@
         
         [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
         
+        [timeDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+        
         [namesOfKeysArray removeObjectAtIndex:selectedIndex];
         
         [mainCollectionView reloadData];
@@ -211,6 +219,26 @@
         // ************ do something else here for pause timer *********** //
         
     }
+}
+
+
+
+
+// ******** From the main delegate ********** //
+-(void)updateTime:(int)time name:(NSString *)nameOfObject{
+    
+    NSString *tempTimeString = [[NSString alloc] initWithFormat:@"%i", time];
+    
+    
+    // ** setting up an NSDictionary to hold the time passed in
+    [timeDictionary setObject:tempTimeString forKey:nameOfObject];
+    
+    
+    [mainCollectionView reloadData];
+    
+    NSLog(@"%i", time);
+    NSLog(@"%@", nameOfObject);
+    
 }
 
 

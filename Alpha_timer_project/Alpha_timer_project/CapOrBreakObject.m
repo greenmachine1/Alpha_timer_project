@@ -11,6 +11,8 @@
 
 @implementation CapOrBreakObject
 
+@synthesize delegate;
+
 
 // -- init method, passing in the name, type, bank, location and time
 -(id)initWithName:(NSString *)name timerType:(NSString *)type bankLocation:(NSString *)bank machineLocation:(NSString *)location timeToSet:(int)time{
@@ -68,6 +70,10 @@
     
     // **** decrement the time **** //
     timeInt--;
+    
+    // **** this gets passed back to the main viewController **** //
+    // **** to update the time within each cell ****
+    [self.delegate updateTime:timeInt name:nameString];
     
     
     // **** if it gets to 0, stop the timer **** //
@@ -180,6 +186,8 @@
     
     return timeInt;
 }
+
+
 
 
 
