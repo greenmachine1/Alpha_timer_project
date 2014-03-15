@@ -141,7 +141,10 @@
         NSString *machineObject = [[NSString alloc] init];
         machineObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnMachine];
         
+        
+        // *** this is going to be dynamic data *** //
         int timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
+        
         
         NSString *timeString = [[NSString alloc] initWithFormat:@"%i", timeReturned];
         
@@ -167,6 +170,9 @@
 
 
 
+
+
+
 // ********** user selects and item then decides what to do ********** //
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -180,6 +186,10 @@
     // *********** marking the index that the user seleced ********** //
     selectedIndex = indexPath.row;
 }
+
+
+
+
 
 
 

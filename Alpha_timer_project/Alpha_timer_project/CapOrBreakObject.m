@@ -8,7 +8,6 @@
 
 #import "CapOrBreakObject.h"
 
-#import "timerObject.h"
 
 @implementation CapOrBreakObject
 
@@ -23,15 +22,136 @@
         typeString = type;
         bankString = bank;
         machineString = location;
-        timeInt = time;
+        
+        // *** getting the seconds of the time *** //
+        // *** passed in *** //
+        timeInt = time * 60;
         
         
-        // ********** calling on the timer object here with the time ********** //
-        newTimerObject = [[timerObject alloc] initWithTime:timeInt andName:nameString];
+        // **** getting my notifications ****
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPause:) name:@"NotifyOnPause" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didResume:) name:@"NotifyOnResume" object:nil];
+        
+        
+        // **** starting the timer **** //
+        [self timerSectionSubtract];
         
     }
     return self;
 }
+
+
+
+
+// **** calling the timer **** //
+-(void)timerSectionSubtract{
+    
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:TRUE];
+    
+    [timer fire];
+    
+    
+}
+
+
+
+
+
+
+// **** method that gets called every second **** //
+-(void)timerMethod:(NSTimer *)time{
+    
+    NSLog(@"%i", timeInt);
+    
+    
+    // **** decrement the time **** //
+    timeInt--;
+    
+    
+    // **** if it gets to 0, stop the timer **** //
+    if(timeInt == 0){
+        
+        [timer invalidate];
+    }
+    
+}
+
+
+
+
+
+
+
+// **** meant to grab the time when the app has **** //
+// **** gone to the background **** //
+-(void)didPause:(NSNotificationCenter *)notify{
+    
+    // **** getting the time of the stop **** //
+    dateStopped = [[NSDate alloc] init];
+    
+    
+    // **** stop the timer **** //
+    [timer invalidate];
+    
+    // **** converting it to an int **** //
+    dateStopInInt = [dateStopped timeIntervalSince1970];
+    
+    NSLog(@"time when stopped %@", dateStopped);
+    
+    
+}
+
+
+
+
+
+// **** meant to grab the time when the app has **** //
+// **** gone to the foreground **** //
+-(void)didResume:(NSNotificationCenter *)notify{
+    
+    
+    
+    // **** getting the date on resume **** //
+    dateBack = [[NSDate alloc] init];
+    
+    dateResmeInInt = [dateBack timeIntervalSince1970];
+    
+    
+    
+    // **** the difference between the stop time and the **** //
+    // **** resume time **** //
+    totalDifferenceInTime = dateResmeInInt - dateStopInInt;
+    
+    
+    
+    
+    // **** getting the total time back and starting back up the timer **** //
+    timeInt = timeInt - totalDifferenceInTime;
+    
+    
+    
+    
+    
+    // **** starting the timer back up **** //
+    [self timerSectionSubtract];
+    
+    
+    
+    
+    NSLog(@"time when resumed %@", dateBack);
+    
+    NSLog(@"time difference %i", totalDifferenceInTime);
+    
+    
+}
+
+
+
+
+
+
 
 
 // *********** return statements ********** //
@@ -59,6 +179,19 @@
 -(int)returnTime{
     
     return timeInt;
+}
+
+
+
+
+// ************* called when the object is deleted ********** //
+- (void)dealloc{
+    
+    // ********** removes object from being notified when deleted ********** //
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 

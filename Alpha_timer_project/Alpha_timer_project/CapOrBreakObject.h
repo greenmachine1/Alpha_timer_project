@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "timerObject.h"
 
 @interface CapOrBreakObject : NSObject
 {
@@ -19,8 +18,18 @@
     
     int timeInt;
     
-    // ********** timer object ********** //
-    timerObject *newTimerObject;
+    NSDate *dateStopped;
+    NSDate *dateBack;
+    
+    int dateStopInInt;
+    int dateResmeInInt;
+    
+    // **** total time difference **** //
+    int totalDifferenceInTime;
+    
+    
+    // **** the timer itself **** //
+    NSTimer *timer;
 }
 
 // -- basically passing in all the information
