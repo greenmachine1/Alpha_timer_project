@@ -27,7 +27,8 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        timeInt = time * 60;
+        //timeInt = time * 60;
+        timeInt = time;
 
         
         timeInitialized = [[NSDate alloc] init];
@@ -107,49 +108,32 @@
     // **** getting the time of the stop **** //
     dateStopped = [[NSDate alloc] init];
     
+    dateStopInInt = [dateStopped timeIntervalSince1970];
+    
     
     // **** stop the timer **** //
     [timer invalidate];
     
-    // **** converting it to an int **** //
-    dateStopInInt = [dateStopped timeIntervalSince1970];
+    // **** notification for when the app is in the background **** //
+    NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
+    application = [UIApplication sharedApplication];
     
-    NSLog(@"time when stopped %@", dateStopped);
-    
-    int timeFromStart = dateStopInInt - dateInitializedValue;
-    
-    int totalTime = timeInt - timeFromStart;
-    
-    
-    
-    NSLog(@"Time in between %i", totalTime);
-    
-    
-    // **** this will be used for notification while in the background **** //
-    NSDate *newDate = [[NSDate date] dateByAddingTimeInterval:totalTime];
-    
-    UIApplication* app = [UIApplication sharedApplication];
-    
-    newAlarm = [[UILocalNotification alloc] init];
-    
-    if(newAlarm){
+    notifyAlarm = [[UILocalNotification alloc] init];
+    if(notifyAlarm){
+        notifyAlarm.fireDate = timeStopped;
+        notifyAlarm.repeatInterval = 0;
+        notifyAlarm.alertBody = @"Times up!";
         
-        newAlarm.fireDate = newDate;
-        newAlarm.repeatInterval = 0;
-        newAlarm.alertBody = @"Done!";
+        [application scheduleLocalNotification:notifyAlarm];
         
-        [app scheduleLocalNotification:newAlarm];
         
     }
-    
-    
-    
-    
 }
 
+
+
+// **** formatting the date in 0:00:00 fashion **** //
 -(NSString *)dateFormat:(int)time{
-    
-    
     
     int timeInHours = time / 60 / 60;
     
@@ -157,11 +141,17 @@
     
     int timeInSeconds = time % 60;
     
-    NSLog(@"hours %i, minutes %i, seconds %i", timeInHours, timeInMinutes, timeInSeconds);
     
-    NSString *tempString = [[NSString alloc] initWithFormat:@"%i:%i:%i", timeInHours, timeInMinutes, timeInSeconds];
-    
-    return tempString;
+    if(time <= 0){
+        
+        return @"0:00:00";
+        
+    }else{
+        
+        NSString *tempString = [[NSString alloc] initWithFormat:@"%i:%i:%i", timeInHours, timeInMinutes, timeInSeconds];
+        
+        return tempString;
+    }
 }
 
 
@@ -186,15 +176,10 @@
     totalDifferenceInTime = dateResmeInInt - dateStopInInt;
     
     
-    
-    
     // **** getting the total time back and starting back up the timer **** //
     timeInt = timeInt - totalDifferenceInTime;
     
-    
-    [app cancelLocalNotification:newAlarm];
-    
-    
+
     // **** starting the timer back up **** //
     [self timerSectionSubtract];
 
@@ -202,6 +187,11 @@
     NSLog(@"time when resumed %@", dateBack);
     
     NSLog(@"time difference %i", totalDifferenceInTime);
+    
+    // **** cancelling the notification **** //
+    //[application cancelLocalNotification:notifyAlarm];
+    
+    [application cancelAllLocalNotifications];
     
     
 }
@@ -252,6 +242,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [application cancelLocalNotification:notifyAlarm];
+    
     
 }
 

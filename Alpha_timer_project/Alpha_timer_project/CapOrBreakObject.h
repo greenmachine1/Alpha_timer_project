@@ -40,14 +40,17 @@
     // **** total time difference **** //
     int totalDifferenceInTime;
     
-    UILocalNotification *newAlarm;
-    
-    UIApplication* app;
     
     // **** the timer itself **** //
     NSTimer *timer;
     
     id<capOrBreakObjectProtocol> delegate;
+    
+    // **** part of the UILocalNotification **** //
+    UIApplication* application;
+    
+    // **** the local notification **** //
+    UILocalNotification* notifyAlarm;
 }
 
 // -- basically passing in all the information
