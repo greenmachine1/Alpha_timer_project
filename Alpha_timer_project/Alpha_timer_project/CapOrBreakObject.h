@@ -13,7 +13,7 @@
 @required
 
 // **** the required method
--(void)updateTime:(int)time name:(NSString *)nameOfObject;
+-(void)updateTime:(NSString *)time name:(NSString *)nameOfObject;
 
 @end
 
@@ -27,15 +27,22 @@
     
     int timeInt;
     
+    NSDate *timeInitialized;
+    
     NSDate *dateStopped;
     NSDate *dateBack;
     
     int dateStopInInt;
     int dateResmeInInt;
     
+    int dateInitializedValue;
+    
     // **** total time difference **** //
     int totalDifferenceInTime;
     
+    UILocalNotification *newAlarm;
+    
+    UIApplication* app;
     
     // **** the timer itself **** //
     NSTimer *timer;

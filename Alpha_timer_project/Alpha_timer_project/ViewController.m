@@ -225,19 +225,18 @@
 
 
 // ******** From the main delegate ********** //
--(void)updateTime:(int)time name:(NSString *)nameOfObject{
+-(void)updateTime:(NSString *)time name:(NSString *)nameOfObject{
     
-    NSString *tempTimeString = [[NSString alloc] initWithFormat:@"%i", time];
+    
     
     
     // ** setting up an NSDictionary to hold the time passed in
-    [timeDictionary setObject:tempTimeString forKey:nameOfObject];
+    [timeDictionary setObject:time forKey:nameOfObject];
     
     
     [mainCollectionView reloadData];
     
-    NSLog(@"%i", time);
-    NSLog(@"%@", nameOfObject);
+
     
 }
 
