@@ -39,10 +39,6 @@
     
     colorOfObject = [[NSString alloc] init];
     
-    pauseOrResumeLogo = [[NSString alloc] init];
-    
-    pauseOrResumeToggle = TRUE;
-
 }
 
 
@@ -153,25 +149,31 @@
         NSString *nameObject = [[NSString alloc] init];
         nameObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnNameString];
         
+        // **** getting the type back **** //
         NSString *typeObject = [[NSString alloc] init];
         typeObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnType];
         
+        
+        // **** getting the bank back **** //
         NSString *bankObject = [[NSString alloc] init];
         bankObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnBank];
         
+        
+        // **** getting the machine number back **** //
         NSString *machineObject = [[NSString alloc] init];
         machineObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnMachine];
         
+        // **** setting the color for the object **** //
         colorOfObject = [colorDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
         
-        NSLog(@"Color is! %@", colorOfObject);
         
-        // *** this is going to be dynamic data *** //
+        // **** getting the time **** //
         timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
         
         
         timeString = [timeDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
         
+        // **** putting the bank and machine into readable format **** //
         NSString *bankPlusMachine;
         if([typeObject  isEqual: @"cap"]){
             bankPlusMachine = [[NSString alloc] initWithFormat:@"Bank %@-%@", bankObject, machineObject];
@@ -189,7 +191,9 @@
         }else if([colorOfObject isEqual:@"Red"]){
             cell.backgroundColor = [UIColor redColor];
         }
-        
+        else{
+
+        }
         cell.nameLabel.text = nameObject;
         cell.typeLabel.text = typeObject;
         cell.timeLabel.text = timeString;
@@ -197,7 +201,7 @@
         
     }
     
-    
+    // **** returning it all **** //
     return  cell;
 }
 
@@ -209,6 +213,8 @@
 // ********** user selects and item then decides what to do ********** //
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    // **** changing the wording of my alert view box **** //
     if([[pauseOrResumeDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]] isEqualToString:@"True"]){
         
         pauseOrResumeLogo = @"Pause Timer";
@@ -222,6 +228,7 @@
     NSString *nameString = [[NSString alloc] initWithFormat:@"Event for %@", [namesOfKeysArray objectAtIndex:indexPath.row]];
     
     
+    // **** showing an alert view giving the user the option to delete or pause/resume timer **** //
     UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:pauseOrResumeLogo, nil];
     
     [newAlert show];
@@ -266,10 +273,8 @@
     // **** each object
     else if(buttonIndex == 1){
         
-        // ************ do something else here for pause timer *********** //
-        // **** this will basically toggle back and forth from pause to resume **** //
-        
-        
+        // **** Toggles back and forth from pause to resume **** //
+    
         // **** pause ****
         if([[pauseOrResumeDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] isEqualToString:@"True"]){
             
@@ -291,25 +296,6 @@
             [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] resumeTimer];
 
         }
-        
-        
-        
-        /*
-        if(pauseOrResumeToggle == TRUE){
-            
-            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] stopTimer];
-            
-            pauseOrResumeToggle = FALSE;
-            
-        }else if(pauseOrResumeToggle == FALSE){
-            
-            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] resumeTimer];
-            
-            pauseOrResumeToggle = TRUE;
-            
-        }
-         */
-        
         
     }
 }

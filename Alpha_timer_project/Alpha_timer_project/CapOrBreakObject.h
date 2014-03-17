@@ -12,11 +12,10 @@
 
 @required
 
-// **** the required method
+// **** the required method **** //
 -(void)updateTime:(NSString *)time name:(NSString *)nameOfObject color:(NSString *)color;
 
 @end
-
 
 @interface CapOrBreakObject : NSObject
 {
@@ -25,13 +24,13 @@
     NSString *bankString;
     NSString *machineString;
     
-    int timeInt;
     
     NSDate *timeInitialized;
     
     NSDate *dateStopped;
     NSDate *dateBack;
     
+    int timeInt;
     int dateStopInInt;
     int dateResmeInInt;
     
@@ -52,12 +51,11 @@
     // **** the local notification **** //
     UILocalNotification* notifyAlarm;
     
-    
     // **** color string **** //
     NSString *colorString;
 }
 
-// -- basically passing in all the information
+// **** basically passing in all the information **** //
 -(id)initWithName:(NSString *)name timerType:(NSString *)type bankLocation:(NSString *)bank machineLocation:(NSString *)location timeToSet:(int)time;
 
 -(NSString *)returnNameString;

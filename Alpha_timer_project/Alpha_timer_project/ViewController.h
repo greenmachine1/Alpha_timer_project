@@ -16,25 +16,18 @@
     IBOutlet UICollectionView *mainCollectionView;
     
     NSMutableDictionary *capOrBreakDictionary;
-    
     NSMutableDictionary *timeDictionary;
-    
     NSMutableDictionary *colorDictionary;
-    
     NSMutableDictionary *pauseOrResumeDictionary;
     
     NSMutableArray *namesOfKeysArray;
     
     int selectedIndex;
-    
-    NSString *timeString;
-    
     int timeReturned;
     
     NSString *colorOfObject;
-    
+    NSString *timeString;
     NSString *pauseOrResumeLogo;
     
-    BOOL pauseOrResumeToggle;
 }
 @end

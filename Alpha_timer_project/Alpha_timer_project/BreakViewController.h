@@ -15,9 +15,7 @@ typedef void (^returnBreakInfo)(NSString *, int);
     int breakTime;
     
     IBOutlet UITextField *nameOfPersonOnBreak;
-    
     IBOutlet UISegmentedControl *timeSegment;
-    
     
     returnBreakInfo returnInfo;
 }

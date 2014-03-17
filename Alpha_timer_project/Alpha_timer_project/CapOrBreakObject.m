@@ -14,7 +14,7 @@
 @synthesize delegate;
 
 
-// -- init method, passing in the name, type, bank, location and time
+// **** init method, passing in the name, type, bank, location and time **** //
 -(id)initWithName:(NSString *)name timerType:(NSString *)type bankLocation:(NSString *)bank machineLocation:(NSString *)location timeToSet:(int)time{
     
     self = [super init];
@@ -27,8 +27,10 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        //timeInt = time * 60;
-        timeInt = time;
+        timeInt = time * 60;
+        
+        // **** used for testing time **** //
+        //timeInt = time;
         
         // **** default color **** //
         colorString = @"Green";
@@ -56,8 +58,6 @@
 
 // **** calling the timer **** //
 -(void)timerSectionSubtract{
-    
-    
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:TRUE];
     
@@ -92,13 +92,12 @@
     
     
     // **** this gets passed back to the main viewController **** //
-    // **** to update the time within each cell ****
+    // **** to update the time and color within each cell ****
     [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString color:colorString];
     
-    //[self dateFormat:timeInt];
     
     
-    // **** if it gets to 0, stop the timer **** //
+    // **** if it gets to 0, stop the timer and send an alert **** //
     if(timeInt <= 0){
         
         [timer invalidate];
@@ -154,6 +153,10 @@
     
 
 }
+
+
+
+
 
 
 
@@ -256,14 +259,18 @@
 }
 
 
-// **** stops the timer
+
+
+// **** stops the timer **** //
 -(void)stopTimer{
     
     [timer invalidate];
 }
 
 
-// **** resumes the timer
+
+
+// **** resumes the timer **** //
 -(void)resumeTimer{
     
     [self timerSectionSubtract];
