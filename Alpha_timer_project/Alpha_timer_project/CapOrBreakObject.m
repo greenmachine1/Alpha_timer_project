@@ -29,6 +29,9 @@
         // *** passed in *** //
         //timeInt = time * 60;
         timeInt = time;
+        
+        // **** default color **** //
+        colorString = @"Green";
 
         
         timeInitialized = [[NSDate alloc] init];
@@ -38,7 +41,7 @@
         // **** getting my notifications ****
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPause:) name:@"NotifyOnPause" object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didResume:) name:@"NotifyOnResume" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didResume) name:@"NotifyOnResume" object:nil];
         
         
         // **** starting the timer **** //
@@ -55,10 +58,10 @@
 -(void)timerSectionSubtract{
     
     
+    
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:TRUE];
     
     [timer fire];
-    
     
 }
 
@@ -76,11 +79,23 @@
     // **** decrement the time **** //
     timeInt--;
     
+    // **** setting the colors
+    // **** Yellow
+    if((timeInt < 300) && (timeInt > 0)){
+        colorString = @"Yellow";
+    }
+    // **** red
+    else if(timeInt == 0){
+        colorString = @"Red";
+    }
+    
+    
+    
     // **** this gets passed back to the main viewController **** //
     // **** to update the time within each cell ****
-    [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString];
+    [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString color:colorString];
     
-    [self dateFormat:timeInt];
+    //[self dateFormat:timeInt];
     
     
     // **** if it gets to 0, stop the timer **** //
@@ -88,9 +103,11 @@
         
         [timer invalidate];
         
+        
         UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         [newAlert show];
+         
     }
     
 }
@@ -114,6 +131,8 @@
     // **** stop the timer **** //
     [timer invalidate];
     
+    
+    
     // **** notification for when the app is in the background **** //
     NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
     application = [UIApplication sharedApplication];
@@ -122,15 +141,18 @@
     
     
     notifyAlarm = [[UILocalNotification alloc] init];
+    
     if(notifyAlarm){
+        
         notifyAlarm.fireDate = timeStopped;
         notifyAlarm.repeatInterval = 0;
         notifyAlarm.alertBody = nameOfAlarmString;
         
         [application scheduleLocalNotification:notifyAlarm];
         
-        
     }
+    
+
 }
 
 
@@ -163,7 +185,7 @@
 
 // **** meant to grab the time when the app has **** //
 // **** gone to the foreground **** //
--(void)didResume:(NSNotificationCenter *)notify{
+-(void)didResume{
     
     
     
@@ -171,7 +193,6 @@
     dateBack = [[NSDate alloc] init];
     
     dateResmeInInt = [dateBack timeIntervalSince1970];
-    
     
     
     // **** the difference between the stop time and the **** //
@@ -184,17 +205,18 @@
     
 
     // **** starting the timer back up **** //
+    
     [self timerSectionSubtract];
-
+    
     
     NSLog(@"time when resumed %@", dateBack);
     
     NSLog(@"time difference %i", totalDifferenceInTime);
     
     // **** cancelling the notification **** //
-    //[application cancelLocalNotification:notifyAlarm];
+    [application cancelLocalNotification:notifyAlarm];
     
-    [application cancelAllLocalNotifications];
+
     
     
 }
@@ -234,6 +256,19 @@
 }
 
 
+// **** stops the timer
+-(void)stopTimer{
+    
+    [timer invalidate];
+}
+
+
+// **** resumes the timer
+-(void)resumeTimer{
+    
+    [self timerSectionSubtract];
+}
+
 
 
 
@@ -245,6 +280,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [timer invalidate];
     
     [application cancelLocalNotification:notifyAlarm];
     

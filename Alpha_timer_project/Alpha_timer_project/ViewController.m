@@ -29,9 +29,19 @@
 	
     capOrBreakDictionary = [[NSMutableDictionary alloc] init];
     
+    colorDictionary = [[NSMutableDictionary alloc] init];
+    
     namesOfKeysArray = [[NSMutableArray alloc] init];
     
     timeDictionary = [[NSMutableDictionary alloc] init];
+    
+    pauseOrResumeDictionary = [[NSMutableDictionary alloc] init];
+    
+    colorOfObject = [[NSString alloc] init];
+    
+    pauseOrResumeLogo = [[NSString alloc] init];
+    
+    pauseOrResumeToggle = TRUE;
 
 }
 
@@ -69,6 +79,9 @@
             
             NSLog(@"%@", [capOrBreakDictionary allKeys]);
             
+            // **** setting the toggle to true **** //
+            [pauseOrResumeDictionary setObject:@"True" forKey:name];
+            
             
             
         };
@@ -101,6 +114,9 @@
             [mainCollectionView reloadData];
             
             NSLog(@"%@", [capOrBreakDictionary allKeys]);
+            
+            // **** setting the toggle to true **** //
+            [pauseOrResumeDictionary setObject:@"True" forKey:capName];
             
         };
         [self presentViewController:capViewController animated:TRUE completion:nil];
@@ -146,12 +162,13 @@
         NSString *machineObject = [[NSString alloc] init];
         machineObject = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnMachine];
         
+        colorOfObject = [colorDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
+        
+        NSLog(@"Color is! %@", colorOfObject);
         
         // *** this is going to be dynamic data *** //
         timeReturned = [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]]returnTime];
         
-        
-        //timeString = [[NSString alloc] initWithFormat:@"%i", timeReturned];
         
         timeString = [timeDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]];
         
@@ -162,7 +179,17 @@
             bankPlusMachine = @"";
         }
         
-        cell.backgroundColor = [UIColor greenColor];
+        // **** deciding which color to show **** //
+        if(colorOfObject == NULL){
+            cell.backgroundColor = [UIColor greenColor];
+        }else if([colorOfObject  isEqual: @"Green"]){
+            cell.backgroundColor = [UIColor greenColor];
+        }else if([colorOfObject isEqual:@"Yellow"]){
+            cell.backgroundColor = [UIColor yellowColor];
+        }else if([colorOfObject isEqual:@"Red"]){
+            cell.backgroundColor = [UIColor redColor];
+        }
+        
         cell.nameLabel.text = nameObject;
         cell.typeLabel.text = typeObject;
         cell.timeLabel.text = timeString;
@@ -182,10 +209,20 @@
 // ********** user selects and item then decides what to do ********** //
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    if([[pauseOrResumeDictionary objectForKey:[namesOfKeysArray objectAtIndex:indexPath.row]] isEqualToString:@"True"]){
+        
+        pauseOrResumeLogo = @"Pause Timer";
+        
+    }else{
+        
+        pauseOrResumeLogo = @"Resume Timer";
+        
+    }
+    
     NSString *nameString = [[NSString alloc] initWithFormat:@"Event for %@", [namesOfKeysArray objectAtIndex:indexPath.row]];
     
     
-    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:@"Pause Timer", nil];
+    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:pauseOrResumeLogo, nil];
     
     [newAlert show];
     
@@ -205,18 +242,74 @@
     
     if(buttonIndex == 0){
         
+        // **** stopping the timer **** //
+        [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] stopTimer];
+        
+        // **** removing the timer **** //
         [capOrBreakDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
         
+        // **** removing the timer dictionary **** //
         [timeDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
         
+        // **** removing the color dictionary **** //
+        [colorDictionary removeObjectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+        
+        // **** removing the names array **** //
         [namesOfKeysArray removeObjectAtIndex:selectedIndex];
         
+        // **** adjusting the mainCollectionView **** //
         [mainCollectionView reloadData];
         
     }
+    
+    // **** ok so I need to create an NSDictionary that will hold true or false values for
+    // **** each object
     else if(buttonIndex == 1){
         
         // ************ do something else here for pause timer *********** //
+        // **** this will basically toggle back and forth from pause to resume **** //
+        
+        
+        // **** pause ****
+        if([[pauseOrResumeDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] isEqualToString:@"True"]){
+            
+            // **** toggling it back and forth **** //
+            [pauseOrResumeDictionary setObject:@"False" forKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+            
+            
+            // **** stopping of the timer **** //
+            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] stopTimer];
+            
+        // **** resume timer **** //
+        }else{
+            
+            // **** toggling it back and forth **** //
+            [pauseOrResumeDictionary setObject:@"True" forKey:[namesOfKeysArray objectAtIndex:selectedIndex]];
+            
+            
+            // **** resuming of the timer **** //
+            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] resumeTimer];
+
+        }
+        
+        
+        
+        /*
+        if(pauseOrResumeToggle == TRUE){
+            
+            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] stopTimer];
+            
+            pauseOrResumeToggle = FALSE;
+            
+        }else if(pauseOrResumeToggle == FALSE){
+            
+            [[capOrBreakDictionary objectForKey:[namesOfKeysArray objectAtIndex:selectedIndex]] resumeTimer];
+            
+            pauseOrResumeToggle = TRUE;
+            
+        }
+         */
+        
         
     }
 }
@@ -225,19 +318,15 @@
 
 
 // ******** From the main delegate ********** //
--(void)updateTime:(NSString *)time name:(NSString *)nameOfObject{
+-(void)updateTime:(NSString *)time name:(NSString *)nameOfObject color:(NSString *)color{
     
-    
-    
+    [colorDictionary setObject:color forKey:nameOfObject];
     
     // ** setting up an NSDictionary to hold the time passed in
     [timeDictionary setObject:time forKey:nameOfObject];
     
     
     [mainCollectionView reloadData];
-    
-
-    
 }
 
 

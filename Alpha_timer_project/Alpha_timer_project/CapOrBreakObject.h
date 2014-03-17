@@ -13,7 +13,7 @@
 @required
 
 // **** the required method
--(void)updateTime:(NSString *)time name:(NSString *)nameOfObject;
+-(void)updateTime:(NSString *)time name:(NSString *)nameOfObject color:(NSString *)color;
 
 @end
 
@@ -51,6 +51,10 @@
     
     // **** the local notification **** //
     UILocalNotification* notifyAlarm;
+    
+    
+    // **** color string **** //
+    NSString *colorString;
 }
 
 // -- basically passing in all the information
@@ -61,6 +65,9 @@
 -(NSString *)returnBank;
 -(NSString *)returnMachine;
 -(int)returnTime;
+
+-(void)stopTimer;
+-(void)resumeTimer;
 
 @property (nonatomic, strong) id delegate;
 

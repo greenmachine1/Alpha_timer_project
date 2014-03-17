@@ -19,6 +19,10 @@
     
     NSMutableDictionary *timeDictionary;
     
+    NSMutableDictionary *colorDictionary;
+    
+    NSMutableDictionary *pauseOrResumeDictionary;
+    
     NSMutableArray *namesOfKeysArray;
     
     int selectedIndex;
@@ -26,5 +30,11 @@
     NSString *timeString;
     
     int timeReturned;
+    
+    NSString *colorOfObject;
+    
+    NSString *pauseOrResumeLogo;
+    
+    BOOL pauseOrResumeToggle;
 }
 @end
