@@ -118,11 +118,14 @@
     NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
     application = [UIApplication sharedApplication];
     
+    NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
+    
+    
     notifyAlarm = [[UILocalNotification alloc] init];
     if(notifyAlarm){
         notifyAlarm.fireDate = timeStopped;
         notifyAlarm.repeatInterval = 0;
-        notifyAlarm.alertBody = @"Times up!";
+        notifyAlarm.alertBody = nameOfAlarmString;
         
         [application scheduleLocalNotification:notifyAlarm];
         
