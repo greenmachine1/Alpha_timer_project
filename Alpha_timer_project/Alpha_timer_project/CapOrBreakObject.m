@@ -27,10 +27,10 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        timeInt = time * 60;
+        //timeInt = time * 60;
         
         // **** used for testing time **** //
-        //timeInt = time;
+        timeInt = time;
         
         // **** default color **** //
         colorString = @"Green";
@@ -85,7 +85,7 @@
         colorString = @"Yellow";
     }
     // **** red
-    else if(timeInt == 0){
+    else if(timeInt <= 0){
         colorString = @"Red";
     }
     

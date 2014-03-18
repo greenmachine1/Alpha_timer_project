@@ -184,15 +184,28 @@
         // **** deciding which color to show **** //
         if(colorOfObject == NULL){
             cell.backgroundColor = [UIColor greenColor];
+            cell.nameLabel.textColor = [UIColor blackColor];
+            cell.typeLabel.textColor = [UIColor blackColor];
+            cell.timeLabel.textColor = [UIColor blackColor];
+            cell.machineNumberLabel.textColor = [UIColor blackColor];
         }else if([colorOfObject  isEqual: @"Green"]){
             cell.backgroundColor = [UIColor greenColor];
+            cell.nameLabel.textColor = [UIColor blackColor];
+            cell.typeLabel.textColor = [UIColor blackColor];
+            cell.timeLabel.textColor = [UIColor blackColor];
+            cell.machineNumberLabel.textColor = [UIColor blackColor];
         }else if([colorOfObject isEqual:@"Yellow"]){
             cell.backgroundColor = [UIColor yellowColor];
+            cell.nameLabel.textColor = [UIColor blackColor];
+            cell.typeLabel.textColor = [UIColor blackColor];
+            cell.timeLabel.textColor = [UIColor blackColor];
+            cell.machineNumberLabel.textColor = [UIColor blackColor];
         }else if([colorOfObject isEqual:@"Red"]){
             cell.backgroundColor = [UIColor redColor];
-        }
-        else{
-
+            cell.nameLabel.textColor = [UIColor whiteColor];
+            cell.typeLabel.textColor = [UIColor whiteColor];
+            cell.timeLabel.textColor = [UIColor whiteColor];
+            cell.machineNumberLabel.textColor = [UIColor whiteColor];
         }
         cell.nameLabel.text = nameObject;
         cell.typeLabel.text = typeObject;
@@ -229,7 +242,7 @@
     
     
     // **** showing an alert view giving the user the option to delete or pause/resume timer **** //
-    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:pauseOrResumeLogo, nil];
+    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:@"Cancel",pauseOrResumeLogo, nil];
     
     [newAlert show];
     
@@ -271,7 +284,7 @@
     
     // **** ok so I need to create an NSDictionary that will hold true or false values for
     // **** each object
-    else if(buttonIndex == 1){
+    else if(buttonIndex == 2){
         
         // **** Toggles back and forth from pause to resume **** //
     
