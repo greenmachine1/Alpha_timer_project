@@ -49,7 +49,7 @@
         
         
         // **** starting the timer **** //
-        [self timerSectionSubtract];
+        [self timerSection];
         
     }
     return self;
@@ -59,7 +59,7 @@
 
 
 // **** calling the timer **** //
--(void)timerSectionSubtract{
+-(void)timerSection{
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:TRUE];
     
@@ -80,16 +80,15 @@
     timeInt--;
     
     // **** setting the colors
-    // **** Yellow
-    /*
+    // **** Green **** //
     if(timeInt > 300){
         colorString = @"Green";
     }
-     */
+    // **** Yellow **** //
     if((timeInt < 300) && (timeInt > 0)){
         colorString = @"Yellow";
     }
-    // **** red
+    // **** red **** //
     else if(timeInt <= 0){
         colorString = @"Red";
     }
@@ -215,7 +214,7 @@
 
         // **** starting the timer back up **** //
     
-        [self timerSectionSubtract];
+        [self timerSection];
     
     
         NSLog(@"time when resumed %@", dateBack);
@@ -285,7 +284,7 @@
     
     didStopByUser = FALSE;
     
-    [self timerSectionSubtract];
+    [self timerSection];
 }
 
 
