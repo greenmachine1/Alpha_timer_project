@@ -39,6 +39,8 @@
     // **** total time difference **** //
     int totalDifferenceInTime;
     
+    BOOL didStopByUser;
+    
     
     // **** the timer itself **** //
     NSTimer *timer;

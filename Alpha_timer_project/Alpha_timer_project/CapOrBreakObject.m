@@ -34,8 +34,10 @@
         
         // **** default color **** //
         colorString = @"Green";
-
         
+        // **** default status **** //
+        didStopByUser = FALSE;
+
         timeInitialized = [[NSDate alloc] init];
         
         dateInitializedValue = [timeInitialized timeIntervalSince1970];
@@ -79,10 +81,12 @@
     
     // **** setting the colors
     // **** Yellow
+    /*
     if(timeInt > 300){
         colorString = @"Green";
     }
-    else if((timeInt < 300) && (timeInt > 0)){
+     */
+    if((timeInt < 300) && (timeInt > 0)){
         colorString = @"Yellow";
     }
     // **** red
@@ -191,35 +195,37 @@
 // **** gone to the foreground **** //
 -(void)didResume{
     
+    // **** if the user did not stop the timer manually **** //
+    if(!(didStopByUser)){
+        
+        // **** getting the date on resume **** //
+        dateBack = [[NSDate alloc] init];
+    
+        dateResmeInInt = [dateBack timeIntervalSince1970];
     
     
-    // **** getting the date on resume **** //
-    dateBack = [[NSDate alloc] init];
-    
-    dateResmeInInt = [dateBack timeIntervalSince1970];
-    
-    
-    // **** the difference between the stop time and the **** //
-    // **** resume time **** //
-    totalDifferenceInTime = dateResmeInInt - dateStopInInt;
+        // **** the difference between the stop time and the **** //
+        // **** resume time **** //
+        totalDifferenceInTime = dateResmeInInt - dateStopInInt;
     
     
-    // **** getting the total time back and starting back up the timer **** //
-    timeInt = timeInt - totalDifferenceInTime;
+        // **** getting the total time back and starting back up the timer **** //
+        timeInt = timeInt - totalDifferenceInTime;
     
 
-    // **** starting the timer back up **** //
+        // **** starting the timer back up **** //
     
-    [self timerSectionSubtract];
+        [self timerSectionSubtract];
     
     
-    NSLog(@"time when resumed %@", dateBack);
+        NSLog(@"time when resumed %@", dateBack);
     
-    NSLog(@"time difference %i", totalDifferenceInTime);
+        NSLog(@"time difference %i", totalDifferenceInTime);
     
-    // **** cancelling the notification **** //
-    [application cancelLocalNotification:notifyAlarm];
-    
+        // **** cancelling the notification **** //
+        [application cancelLocalNotification:notifyAlarm];
+        
+    }
 
     
     
@@ -265,6 +271,8 @@
 // **** stops the timer **** //
 -(void)stopTimer{
     
+    didStopByUser = TRUE;
+    
     [timer invalidate];
     
 }
@@ -274,6 +282,8 @@
 
 // **** resumes the timer **** //
 -(void)resumeTimer{
+    
+    didStopByUser = FALSE;
     
     [self timerSectionSubtract];
 }
@@ -290,8 +300,10 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    // **** stops the timer **** //
     [timer invalidate];
     
+    // **** cancels the local notification **** //
     [application cancelLocalNotification:notifyAlarm];
     
     
