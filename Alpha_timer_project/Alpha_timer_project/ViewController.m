@@ -206,6 +206,12 @@
             cell.typeLabel.textColor = [UIColor whiteColor];
             cell.timeLabel.textColor = [UIColor whiteColor];
             cell.machineNumberLabel.textColor = [UIColor whiteColor];
+        }else if([colorOfObject isEqual:@"Orange"]){
+            cell.backgroundColor = [UIColor orangeColor];
+            cell.nameLabel.textColor = [UIColor blackColor];
+            cell.typeLabel.textColor = [UIColor blackColor];
+            cell.timeLabel.textColor = [UIColor blackColor];
+            cell.machineNumberLabel.textColor = [UIColor blackColor];
         }
         cell.nameLabel.text = nameObject;
         cell.typeLabel.text = typeObject;
@@ -242,12 +248,13 @@
     
     
     // **** showing an alert view giving the user the option to delete or pause/resume timer **** //
-    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete" otherButtonTitles:@"Cancel",pauseOrResumeLogo, nil];
+    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:nameString message:@"What would you like to do?" delegate:self cancelButtonTitle:@"Delete Event" otherButtonTitles:@"Cancel", pauseOrResumeLogo, nil];
     
     [newAlert show];
     
     // *********** marking the index that the user seleced ********** //
-    selectedIndex = indexPath.row;
+    selectedIndex = (int)indexPath.row;
+    
 }
 
 

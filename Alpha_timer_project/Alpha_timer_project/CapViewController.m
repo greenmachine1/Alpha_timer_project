@@ -55,10 +55,17 @@
             
             // -- my code block that returns to the main view
             returnCapInfo(nameOfCap.text, machineOfCap.text, bankOfCap.text);
+            
+            
             // -- dismissing this view
             [self dismissViewControllerAnimated:TRUE completion:nil];
         }
         
+    }
+    else if(button.tag == 1){
+        
+        // -- dismissing this view
+        [self dismissViewControllerAnimated:TRUE completion:nil];
     }
 }
 

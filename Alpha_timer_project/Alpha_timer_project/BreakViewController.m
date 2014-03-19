@@ -73,15 +73,28 @@
     // -- the done button
     if(button.tag == 0){
         
-        NSLog(@"%@ %i", nameOfPersonOnBreak.text, breakTime);
+        if([nameOfPersonOnBreak.text isEqualToString:@""]){
+            
+            
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter a name for the Break" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlert show];
+            
+        }else{
+            
+            // -- calling the code block to return data
+            // -- to my mainview controller
+            returnInfo(nameOfPersonOnBreak.text, breakTime);
         
-        // -- calling the code block to return data
-        // -- to my mainview controller
-        returnInfo(nameOfPersonOnBreak.text, breakTime);
+            // -- dismissing this view
+            [self dismissViewControllerAnimated:TRUE completion:nil];
+        }
+        
+    }
+    else if (button.tag == 1){
         
         // -- dismissing this view
         [self dismissViewControllerAnimated:TRUE completion:nil];
-        
     }
 }
 

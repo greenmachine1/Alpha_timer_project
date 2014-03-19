@@ -27,10 +27,10 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        //timeInt = time * 60;
+        timeInt = time * 60;
         
         // **** used for testing time **** //
-        timeInt = time;
+        //timeInt = time;
         
         // **** default color **** //
         colorString = @"Green";
@@ -72,16 +72,17 @@
 
 // **** method that gets called every second **** //
 -(void)timerMethod:(NSTimer *)time{
-    
-    NSLog(@"%i", timeInt);
-    
+
     
     // **** decrement the time **** //
     timeInt--;
     
     // **** setting the colors
     // **** Yellow
-    if((timeInt < 300) && (timeInt > 0)){
+    if(timeInt > 300){
+        colorString = @"Green";
+    }
+    else if((timeInt < 300) && (timeInt > 0)){
         colorString = @"Yellow";
     }
     // **** red
@@ -265,6 +266,7 @@
 -(void)stopTimer{
     
     [timer invalidate];
+    
 }
 
 
