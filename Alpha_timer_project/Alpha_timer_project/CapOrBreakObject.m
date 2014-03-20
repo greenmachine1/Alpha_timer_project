@@ -27,12 +27,19 @@
         bankString = bank;
         machineString = location;
         
+        
         // *** getting the seconds of the time *** //
         // *** passed in *** //
         timeInt = time * 60;
         
         // **** used for testing time **** //
-        timeInt = time;
+        //timeInt = time;
+        
+        
+        // **** for the cap, the time starts at 0 and goes up **** //
+        if([typeString isEqual:@"cap"]){
+            timeInt = 0;
+        }
         
         // **** default color **** //
         //colorString = @"Green";
@@ -53,7 +60,8 @@
         // **** starting the timer **** //
         [self timerSection];
         
-    }
+        }
+    
     return self;
 }
 
@@ -77,46 +85,72 @@
 // **** method that gets called every second **** //
 -(void)timerMethod:(NSTimer *)time{
 
+    // **** if this object is a break **** //
+    if([typeString isEqual:@"break"]){
     
-    // **** decrement the time **** //
-    timeInt--;
+
+        // **** decrement the time **** //
+        timeInt--;
     
-    // **** setting the colors
-    // **** Green **** //
-    if(timeInt > 300){
-        colorString = @"Green";
-    }
-    // **** Yellow **** //
-    if((timeInt < 300) && (timeInt > 0)){
-        colorString = @"Yellow";
-    }
-    // **** red **** //
-    else if(timeInt <= 0){
-        colorString = @"Red";
-    }
-    
-    
-    
-    // **** this gets passed back to the main viewController **** //
-    // **** to update the time and color within each cell ****
-    [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString color:colorString];
+        // **** setting the colors
+        // **** Green **** //
+        if(timeInt > 300){
+            colorString = @"Green";
+        }
+        // **** Yellow **** //
+        if((timeInt < 300) && (timeInt > 0)){
+            colorString = @"Yellow";
+        }
+        // **** red **** //
+        else if(timeInt <= 0){
+            colorString = @"Red";
+        }
     
     
     
-    // **** if it gets to 0, stop the timer and send an alert **** //
-    if(timeInt <= 0){
+        // **** this gets passed back to the main viewController **** //
+        // **** to update the time and color within each cell ****
+        [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString color:colorString];
+    
+    
+    
+        // **** if it gets to 0, stop the timer and send an alert **** //
+        if(timeInt <= 0){
         
-        [timer invalidate];
+            [timer invalidate];
         
         
-        UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         
-        // **** vibrate on alert **** //
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            // **** vibrate on alert **** //
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         
-        [newAlert show];
+            [newAlert show];
          
+        }
+        
+    // **** if this object is a cap **** //
+    }else{
+        
+        timeInt++;
+        
+        if(timeInt >= 7200){
+            
+            colorString = @"Red";
+        
+        }else if(timeInt < 7200){
+            
+            colorString = @"Green";
+            
+        }
+        
+        
+        // **** this gets passed back to the main viewController **** //
+        // **** to update the time and color within each cell ****
+        [self.delegate updateTime:[self dateFormat:timeInt ] name:nameString color:colorString];
+        
+    
     }
     
 }
@@ -141,27 +175,29 @@
     [timer invalidate];
     
     
-    
-    // **** notification for when the app is in the background **** //
-    NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
-    application = [UIApplication sharedApplication];
-    
-    NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
-    
-    
-    notifyAlarm = [[UILocalNotification alloc] init];
-    
-    if(notifyAlarm){
+    if([typeString isEqual:@"break"]){
         
-        notifyAlarm.fireDate = timeStopped;
-        notifyAlarm.repeatInterval = 0;
-        notifyAlarm.alertBody = nameOfAlarmString;
-        
-        [application scheduleLocalNotification:notifyAlarm];
-        
+        // **** notification for when the app is in the background **** //
+        NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
+        application = [UIApplication sharedApplication];
+    
+        NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
+    
+    
+        notifyAlarm = [[UILocalNotification alloc] init];
+    
         // **** vibrate on alert **** //
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    
+        if(notifyAlarm){
         
+            notifyAlarm.fireDate = timeStopped;
+            notifyAlarm.repeatInterval = 0;
+            notifyAlarm.alertBody = nameOfAlarmString;
+        
+            [application scheduleLocalNotification:notifyAlarm];
+        
+        }
     }
     
 
@@ -177,19 +213,39 @@
 -(NSString *)dateFormat:(int)time{
     
     int timeInHours = time / 60 / 60;
-    
     int timeInMinutes = time / 60 % 60;
-    
     int timeInSeconds = time % 60;
+    
+    NSString *timeInHoursTempString = [[NSString alloc] initWithFormat:@"%i", timeInHours];
+    NSString *timeInMinutesTempString = [[NSString alloc] initWithFormat:@"%i", timeInMinutes];
+    NSString *timeInSecondsTempString = [[NSString alloc] initWithFormat:@"%i", timeInSeconds];
+    
+    if(timeInHours < 10){
+        
+        timeInHoursTempString = [NSString stringWithFormat:@"0%i", timeInHours];
+        
+    }
+    
+    if(timeInMinutes < 10){
+        
+        timeInMinutesTempString = [NSString stringWithFormat:@"0%i", timeInMinutes];
+    }
+    
+    if(timeInSeconds < 10){
+        
+        timeInSecondsTempString = [NSString stringWithFormat:@"0%i", timeInSeconds];
+        
+    }
+    
     
     
     if(time <= 0){
         
-        return @"0:00:00";
+        return @"00:00:00";
         
     }else{
         
-        NSString *tempString = [[NSString alloc] initWithFormat:@"%i:%i:%i", timeInHours, timeInMinutes, timeInSeconds];
+        NSString *tempString = [[NSString alloc] initWithFormat:@"%@:%@:%@", timeInHoursTempString, timeInMinutesTempString, timeInSecondsTempString];
         
         return tempString;
     }
@@ -216,10 +272,17 @@
         // **** resume time **** //
         totalDifferenceInTime = dateResmeInInt - dateStopInInt;
     
-    
-        // **** getting the total time back and starting back up the timer **** //
-        timeInt = timeInt - totalDifferenceInTime;
-    
+        if([typeString isEqual:@"break"]){
+            
+            // **** getting the total time back and starting back up the timer **** //
+            timeInt = timeInt - totalDifferenceInTime;
+        }
+        else{
+            
+            // **** getting the total time back and starting back up the timer **** //
+            timeInt = timeInt + totalDifferenceInTime;
+            
+        }
 
         // **** starting the timer back up **** //
     
