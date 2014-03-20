@@ -8,6 +8,8 @@
 
 #import "CapOrBreakObject.h"
 
+#import <AudioToolbox/AudioToolbox.h>
+
 
 @implementation CapOrBreakObject
 
@@ -30,10 +32,10 @@
         timeInt = time * 60;
         
         // **** used for testing time **** //
-        //timeInt = time;
+        timeInt = time;
         
         // **** default color **** //
-        colorString = @"Green";
+        //colorString = @"Green";
         
         // **** default status **** //
         didStopByUser = FALSE;
@@ -109,6 +111,10 @@
         
         UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
+        
+        // **** vibrate on alert **** //
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        
         [newAlert show];
          
     }
@@ -152,6 +158,9 @@
         notifyAlarm.alertBody = nameOfAlarmString;
         
         [application scheduleLocalNotification:notifyAlarm];
+        
+        // **** vibrate on alert **** //
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         
     }
     
