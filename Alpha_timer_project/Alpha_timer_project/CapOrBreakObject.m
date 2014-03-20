@@ -30,10 +30,10 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        timeInt = time * 60;
+        //timeInt = time * 60;
         
         // **** used for testing time **** //
-        //timeInt = time;
+        timeInt = time;
         
         
         // **** for the cap, the time starts at 0 and goes up **** //
@@ -116,7 +116,8 @@
     
         // **** if it gets to 0, stop the timer and send an alert **** //
         if(timeInt <= 0){
-        
+            
+            
             [timer invalidate];
         
         
@@ -177,6 +178,9 @@
     
     if([typeString isEqual:@"break"]){
         
+        
+        
+        
         // **** notification for when the app is in the background **** //
         NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
         application = [UIApplication sharedApplication];
@@ -185,19 +189,22 @@
     
     
         notifyAlarm = [[UILocalNotification alloc] init];
-    
-        // **** vibrate on alert **** //
-        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-    
+        
         if(notifyAlarm){
         
             notifyAlarm.fireDate = timeStopped;
             notifyAlarm.repeatInterval = 0;
             notifyAlarm.alertBody = nameOfAlarmString;
+            
+            // **** the little red number at the corner of the **** //
+            // **** app icon **** //
+            notifyAlarm.applicationIconBadgeNumber = 1;
         
             [application scheduleLocalNotification:notifyAlarm];
+            
         
         }
+        
     }
     
 
@@ -236,9 +243,7 @@
         timeInSecondsTempString = [NSString stringWithFormat:@"0%i", timeInSeconds];
         
     }
-    
-    
-    
+
     if(time <= 0){
         
         return @"00:00:00";
@@ -293,6 +298,9 @@
     
         NSLog(@"time difference %i", totalDifferenceInTime);
     
+        NSLog(@"%lu", (unsigned long)[[application scheduledLocalNotifications] count]);
+        
+        
         // **** cancelling the notification **** //
         [application cancelLocalNotification:notifyAlarm];
         
