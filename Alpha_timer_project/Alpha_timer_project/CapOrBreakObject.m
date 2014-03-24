@@ -35,10 +35,10 @@
         
         // *** getting the seconds of the time *** //
         // *** passed in *** //
-        //timeInt = time * 60;
+        timeInt = time * 60;
         
         // **** used for testing time **** //
-        timeInt = time;
+        //timeInt = time;
         
         
         // **** for the cap, the time starts at 0 and goes up **** //
@@ -122,10 +122,7 @@
         // **** if it gets to 0, stop the timer and send an alert **** //
         if((timeInt <= 0) && (triggerAfterFirstNotification != TRUE)){
             
-            
             [timer invalidate];
-                
-            NSLog(@"count %i", [[application scheduledLocalNotifications] count]);
                 
             UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
@@ -144,9 +141,19 @@
         
         timeInt++;
         
-        if(timeInt >= 7200){
+        if((timeInt >= 7200) && (triggerAfterFirstNotification != TRUE)){
             
             colorString = @"Red";
+            
+            UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            
+            // **** vibrate on alert **** //
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            
+            [newAlert show];
+            
+            triggerAfterFirstNotification = TRUE;
         
         }else if(timeInt < 7200){
             
@@ -186,8 +193,6 @@
     
     if([typeString isEqual:@"break"]){
         
-        
-        
         if(!(timeInt <= 0)){
         
             // **** notification for when the app is in the background **** //
@@ -209,6 +214,39 @@
                 [application scheduleLocalNotification:notifyAlarm];
             
         
+            }
+        }
+        
+    }
+    
+    // **** if the type is cap **** //
+    else{
+        
+        int timeToReach = 7200 - timeInt;
+        
+        if(!(timeToReach <= 0)){
+        
+            NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeToReach];
+        
+            NSLog(@"time in the future%@", timeStopped);
+        
+            application = [UIApplication sharedApplication];
+        
+            NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
+        
+        
+            notifyAlarm = [[UILocalNotification alloc] init];
+        
+            if(notifyAlarm){
+            
+                notifyAlarm.fireDate = timeStopped;
+                notifyAlarm.repeatInterval = 0;
+                notifyAlarm.alertBody = nameOfAlarmString;
+            
+            
+                [application scheduleLocalNotification:notifyAlarm];
+            
+            
             }
         }
         
