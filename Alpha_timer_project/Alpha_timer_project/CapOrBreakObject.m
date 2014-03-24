@@ -28,6 +28,11 @@
         machineString = location;
         
         
+        // **** makes sure that the notification for when the time **** //
+        // **** is done, only gets fired once **** //
+        triggerAfterFirstNotification = FALSE;
+        
+        
         // *** getting the seconds of the time *** //
         // *** passed in *** //
         //timeInt = time * 60;
@@ -115,12 +120,13 @@
     
     
         // **** if it gets to 0, stop the timer and send an alert **** //
-        if(timeInt <= 0){
+        if((timeInt <= 0) && (triggerAfterFirstNotification != TRUE)){
             
             
             [timer invalidate];
-        
-        
+                
+            NSLog(@"count %i", [[application scheduledLocalNotifications] count]);
+                
             UIAlertView *newAlert = [[UIAlertView alloc]initWithTitle:@"Done" message:@"Breaks up!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         
@@ -128,7 +134,9 @@
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         
             [newAlert show];
-         
+            
+            triggerAfterFirstNotification = TRUE;
+            
         }
         
     // **** if this object is a cap **** //
@@ -180,29 +188,28 @@
         
         
         
+        if(!(timeInt <= 0)){
         
-        // **** notification for when the app is in the background **** //
-        NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
-        application = [UIApplication sharedApplication];
+            // **** notification for when the app is in the background **** //
+            NSDate *timeStopped = [[NSDate date] dateByAddingTimeInterval:timeInt];
+            application = [UIApplication sharedApplication];
     
-        NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
+            NSString *nameOfAlarmString = [[NSString alloc] initWithFormat:@"%@ times up!", nameString];
     
     
-        notifyAlarm = [[UILocalNotification alloc] init];
+            notifyAlarm = [[UILocalNotification alloc] init];
         
-        if(notifyAlarm){
+            if(notifyAlarm){
         
-            notifyAlarm.fireDate = timeStopped;
-            notifyAlarm.repeatInterval = 0;
-            notifyAlarm.alertBody = nameOfAlarmString;
-            
-            // **** the little red number at the corner of the **** //
-            // **** app icon **** //
-            notifyAlarm.applicationIconBadgeNumber = 1;
+                notifyAlarm.fireDate = timeStopped;
+                notifyAlarm.repeatInterval = 0;
+                notifyAlarm.alertBody = nameOfAlarmString;
+                
         
-            [application scheduleLocalNotification:notifyAlarm];
+                [application scheduleLocalNotification:notifyAlarm];
             
         
+            }
         }
         
     }
@@ -250,6 +257,7 @@
         
     }else{
         
+        
         NSString *tempString = [[NSString alloc] initWithFormat:@"%@:%@:%@", timeInHoursTempString, timeInMinutesTempString, timeInSecondsTempString];
         
         return tempString;
@@ -293,14 +301,8 @@
     
         [self timerSection];
     
-    
-        NSLog(@"time when resumed %@", dateBack);
-    
-        NSLog(@"time difference %i", totalDifferenceInTime);
-    
-        NSLog(@"%lu", (unsigned long)[[application scheduledLocalNotifications] count]);
         
-        
+
         // **** cancelling the notification **** //
         [application cancelLocalNotification:notifyAlarm];
         

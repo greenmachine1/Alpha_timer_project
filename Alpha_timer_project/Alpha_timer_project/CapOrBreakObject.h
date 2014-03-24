@@ -40,6 +40,7 @@
     int totalDifferenceInTime;
     
     BOOL didStopByUser;
+    BOOL triggerAfterFirstNotification;
     
     
     // **** the timer itself **** //
