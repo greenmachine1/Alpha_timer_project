@@ -140,7 +140,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     customBreakOrCapCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"customCell" forIndexPath:indexPath ];
-
+    
     
     
     if(namesOfKeysArray != nil){
@@ -180,6 +180,8 @@
         }else{
             bankPlusMachine = @"";
         }
+        
+        
         
         // **** deciding which color to show **** //
         if(colorOfObject == NULL){

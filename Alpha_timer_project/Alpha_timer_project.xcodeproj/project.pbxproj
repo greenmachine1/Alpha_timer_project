@@ -27,6 +27,9 @@
 		D60862E318C47DE80071EA74 /* BreakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D60862E118C47DE80071EA74 /* BreakViewController.m */; };
 		D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60862E218C47DE80071EA74 /* BreakViewController.xib */; };
 		D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D65DA62818C9C78900817F25 /* CapOrBreakObject.m */; };
+		D6A3868119089489006F29CC /* Settings_layer.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A3868019089489006F29CC /* Settings_layer.m */; };
+		D6A3868319089896006F29CC /* iPhone_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A3868219089896006F29CC /* iPhone_Background.png */; };
+		D6A386891908A45C006F29CC /* Cell_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A386881908A45C006F29CC /* Cell_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,10 @@
 		D60862E218C47DE80071EA74 /* BreakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakViewController.xib; sourceTree = "<group>"; };
 		D65DA62718C9C78900817F25 /* CapOrBreakObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapOrBreakObject.h; sourceTree = "<group>"; };
 		D65DA62818C9C78900817F25 /* CapOrBreakObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapOrBreakObject.m; sourceTree = "<group>"; };
+		D6A3867F19089489006F29CC /* Settings_layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings_layer.h; sourceTree = "<group>"; };
+		D6A3868019089489006F29CC /* Settings_layer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings_layer.m; sourceTree = "<group>"; };
+		D6A3868219089896006F29CC /* iPhone_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone_Background.png; path = ../../iPhone_Background.png; sourceTree = "<group>"; };
+		D6A386881908A45C006F29CC /* Cell_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cell_image.png; path = ../../Cell_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +105,10 @@
 		D608629718C477530071EA74 = {
 			isa = PBXGroup;
 			children = (
+				D6A386881908A45C006F29CC /* Cell_image.png */,
+				D6A3868219089896006F29CC /* iPhone_Background.png */,
+				D6A3867F19089489006F29CC /* Settings_layer.h */,
+				D6A3868019089489006F29CC /* Settings_layer.m */,
 				D60862A918C477530071EA74 /* Alpha_timer_project */,
 				D60862C818C477530071EA74 /* Alpha_timer_projectTests */,
 				D60862A218C477530071EA74 /* Frameworks */,
@@ -256,6 +267,8 @@
 			files = (
 				D60862BC18C477530071EA74 /* Images.xcassets in Resources */,
 				D60862DF18C47DD80071EA74 /* CapViewController.xib in Resources */,
+				D6A3868319089896006F29CC /* iPhone_Background.png in Resources */,
+				D6A386891908A45C006F29CC /* Cell_image.png in Resources */,
 				D60862AE18C477530071EA74 /* InfoPlist.strings in Resources */,
 				D60862B718C477530071EA74 /* Main.storyboard in Resources */,
 				D60862E418C47DE80071EA74 /* BreakViewController.xib in Resources */,
@@ -277,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A3868119089489006F29CC /* Settings_layer.m in Sources */,
 				D60862BA18C477530071EA74 /* ViewController.m in Sources */,
 				D60862B418C477530071EA74 /* AppDelegate.m in Sources */,
 				D65DA62918C9C78900817F25 /* CapOrBreakObject.m in Sources */,

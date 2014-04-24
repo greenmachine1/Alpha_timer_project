@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -17,12 +17,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iPhone_Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="uba-YX-tUZ">
+                    <rect key="frame" x="-6" y="-7" width="331" height="582"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAX-Sk-W4Y">
                     <rect key="frame" x="60" y="413" width="200" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.28030305136141359" green="0.40926268092545875" blue="0.72280485729999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.17369348170000001" green="0.1173209331" blue="0.72280485729999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Done">
-                        <color key="titleColor" red="0.81736855949999998" green="1" blue="0.96640507980000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="0.99562737850000005" blue="0.92599426090000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -32,9 +36,9 @@
                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HwG-Ys-Wg2">
                     <rect key="frame" x="60" y="485" width="200" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.2803030514" green="0.40926268090000001" blue="0.72280485729999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.17369348170000001" green="0.1173209331" blue="0.72280485729999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Cancel">
-                        <color key="titleColor" red="0.81736855949999998" green="1" blue="0.96640507980000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="0.99562737850000005" blue="0.92599426090000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -86,9 +90,12 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.315993784" green="0.77137929920000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="0.99562737850000005" blue="0.92599426090000003" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="iPhone_Background.png" width="640" height="1136"/>
+    </resources>
 </document>
